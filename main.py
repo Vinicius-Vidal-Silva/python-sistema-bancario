@@ -2,7 +2,7 @@
 
 ################################ SISTEMA BANCÁRIO ########################################
 #variáveis e constantes
-saldo = 100
+saldo = 10000
 deposito = 0
 numero_deposito = 0
 limite = 500
@@ -52,20 +52,25 @@ while sair:
     ##### Realização do saque e condições
     elif opcao == "2":
         for i in range(4):
-            if i == LIMITE_SAQUE:
-                print("Limite diario de saques atingido. Tente novamente amanha!")
-                break
-            saque = input("Informe a quantidade que deseja sacar: ")
-            saque_num = int(saque)
-            if saque_num <= 0:
-                print("Valor invalido. Tente novamente!")
-            elif saque_num > saldo:
-                print("Saque não realizado.\nMotivo: Valor maior do que saldo disponivel.")
-            else:
-                saldo = saldo - saque_num
-                numero_saque = numero_saque + 1
-                lista_saque.append(saque_num)
-                print("Saque realizado com sucesso!")
+            controle2 = True
+            while controle2:
+                if i == LIMITE_SAQUE:
+                    print("Limite diario de saques atingido. Tente novamente amanha!")
+                    break
+                saque = input("Informe a quantidade que deseja sacar: ")
+                saque_num = int(saque)
+                if saque_num <= 0:
+                    print("Valor invalido. Tente novamente!")
+                elif saque_num > saldo:
+                    print("Saque não realizado.\nMotivo: Valor maior do que saldo disponivel.")
+                elif saque_num > 500:
+                    print("Saque nao relizado.\nMotivo: Valor maximo ultrapassado.")
+                else:
+                    saldo = saldo - saque_num
+                    numero_saque = numero_saque + 1
+                    lista_saque.append(saque_num)
+                    print("Saque realizado com sucesso!")
+                    controle2 = False
             try:    
                 print("1 - Novo saque\n2 - Voltar ao menu inicial")
                 escolha = input("Escolha a opcao desejada: ")
